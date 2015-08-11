@@ -1,0 +1,2 @@
+class SnapCiManualTrigger::InvalidCredentialsError < StandardError
+end

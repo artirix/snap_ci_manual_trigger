@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - 2.1.2
+before_install: gem install bundler -v 1.10.5
+
+script: 'bundle exec rake spec'
+
+notifications:
+  email:
+    recipients:
+      - eturino@eturino.com
+    on_failure: change
+    on_success: never
