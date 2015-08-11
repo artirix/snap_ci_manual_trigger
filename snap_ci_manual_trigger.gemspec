@@ -21,8 +21,13 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday'
   spec.add_dependency 'oj'
   spec.add_dependency 'oj_mimic_json'
+
+  spec.add_dependency 'rake' # for the generators
+  spec.add_dependency 'railties', '>= 3.2', '< 5' # for the generators
+
   spec.add_development_dependency 'bundler', '~> 1.10'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'stub_env'
+  spec.add_development_dependency 'generator_spec'
 end

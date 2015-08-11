@@ -8,6 +8,18 @@ require 'snap_ci_manual_trigger/invalid_credentials_error'
 require 'snap_ci_manual_trigger/invalid_resource_error'
 require 'snap_ci_manual_trigger/service'
 
+
+# GENERATORS
+
+require 'rake'
+require 'thor'
+require 'rails/generators'
+require 'rails/generators/actions'
+
+require 'generators/snap_ci_manual_trigger/rake_tasks_generator'
+require 'snap_ci_manual_trigger/missing_rake_arguments_error'
+require 'snap_ci_manual_trigger/missing_rake_auth_error'
+
 module SnapCiManualTrigger
   DEFAULT_BRANCH_NAME = 'master'.freeze
 

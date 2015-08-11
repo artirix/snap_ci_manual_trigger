@@ -1,0 +1,2 @@
+class SnapCiManualTrigger::MissingRakeArgumentsError < StandardError
+end
