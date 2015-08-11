@@ -52,7 +52,28 @@ running_pipeline_url = service.manual_stage_on_new_pipeline 'Deploy'
 
 ### Generate tasks
 
-TODO: generate rake tasks for quick setup of project/repo/branch, using ENV variables for Auth and overrides. 
+This gem adds a generator to create specific rake tasks that will make things easier.
+ 
+We invoke the generator like this:
+
+```shell
+rails generate snap_ci_manual_trigger:rake_tasks my-org my-repo
+```
+
+And it will create a rake task for calling `manual_stage_on_new_pipeline` there. It will be used like this:
+
+```shell
+# this will call for the Deploy stage in a new pipeline in my-org/my-repo in branch 'master'
+rake snap_ci_manual_trigger:my-org_my-repo:manual_stage_on_new_pipeline[Deploy]
+
+# this will call for the Deploy stage in a new pipeline in my-org/my-repo in branch 'other_branch'
+rake snap_ci_manual_trigger:my-org_my-repo:manual_stage_on_new_pipeline[Deploy,other_branch]
+```
+
+It reads the credentials from ENV:
+ 
+- `SNAP_CI_USER`: Snap-CI username
+- `SNAP_CI_API_KEY`: Snap-CI API Key
 
 ## Development
 
@@ -64,3 +85,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/artirix/snap_ci_manual_trigger.
 
+
+## CHANGES
+
+### v.1.0.0
+
+- Generators added
+- major version bump since we now require railties, which could be a breaking change
