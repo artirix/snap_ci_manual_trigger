@@ -88,6 +88,10 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/artiri
 
 ## CHANGES
 
+### v.1.0.1
+
+- indentation in generated rake tasks
+
 ### v.1.0.0
 
 - Generators added
