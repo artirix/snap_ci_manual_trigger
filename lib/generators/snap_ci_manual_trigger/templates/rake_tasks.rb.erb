@@ -1,6 +1,6 @@
 namespace :snap_ci do
   desc <<-DESC.strip_heredoc
-    executes #manual_stage_on_new_pipeline using <%= owner.inspect %> as owner and <%= repository.inspect %> as repository
+    executes #manual_stage_on_new_pipeline using <%= owner.inspect %> as owner and <%= repository.inspect %> as repository (requires ENV vars SNAP_CI_USER and SNAP_CI_API_KEY for credentials).
 
     example:
       rake <%= owner %>_<%= repository %>:manual_stage_on_new_pipeline[Deploy]
@@ -12,7 +12,7 @@ namespace :snap_ci do
 
   DESC
 
-  task :'<%= owner %>_<%= repository %>', [:stage, :branch_name] => [:environment] do |t, args|
+  task :'<%= owner %>_<%= repository %>', [:stage, :branch_name] do |_t, args|
     args.with_defaults branch_name: 'master'
 
     owner       = '<%= owner %>'

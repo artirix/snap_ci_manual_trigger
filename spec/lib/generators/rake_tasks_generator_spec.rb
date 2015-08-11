@@ -9,8 +9,6 @@ describe SnapCiManualTrigger::Generators::RakeTasksGenerator, type: :generator d
   let(:task_name) { 'snap_ci:my_owner_my_repo' }
 
   before(:all) do
-    Rake::Task.define_task(:environment)
-
     prepare_destination
     run_generator
   end
@@ -19,7 +17,7 @@ describe SnapCiManualTrigger::Generators::RakeTasksGenerator, type: :generator d
     it 'creates a rake task for fast manual_' do
       assert_file "#{test_case.destination_root}/lib/tasks/snap_ci/my_owner_my_repo.rake" do |task_file|
         task_file.include?('namespace :snap_ci ')
-        task_file.include?('task :my_owner_my_repo, [:stage, :branch_name] => [:environment]')
+        task_file.include?('task :my_owner_my_repo, [:stage, :branch_name]')
       end
     end
   end

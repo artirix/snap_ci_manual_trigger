@@ -88,6 +88,11 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/artiri
 
 ## CHANGES
 
+### v.1.0.2
+
+- specify requirement of SNAP_CI_USER and SNAP_CI_API_KEY env vars in generated rake task.
+- remove `:environment` req. in generated rake task.
+
 ### v.1.0.1
 
 - indentation in generated rake tasks
