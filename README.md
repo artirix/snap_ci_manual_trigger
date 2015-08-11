@@ -63,14 +63,14 @@ rails generate snap_ci_manual_trigger:rake_tasks my-org my-repo
 And it will create a rake task for calling `manual_stage_on_new_pipeline` there. It will be used like this:
 
 ```shell
-# this will call for the Deploy stage in a new pipeline in my-org/my-repo in branch 'master'
-rake snap_ci_manual_trigger:my-org_my-repo:manual_stage_on_new_pipeline[Deploy]
+# this will call for the 'Deploy' stage in a new pipeline in my-org/my-repo in branch 'master'
+rake snap_ci:my-org_my-repo[Deploy]
 
-# this will call for the Deploy stage in a new pipeline in my-org/my-repo in branch 'other_branch'
-rake snap_ci_manual_trigger:my-org_my-repo:manual_stage_on_new_pipeline[Deploy,other_branch]
+# this will call for the 'Deploy' stage in a new pipeline in my-org/my-repo in branch 'other_branch'
+rake snap_ci:my-org_my-repo[Deploy,other_branch]
 ```
 
-It reads the credentials from ENV:
+It reads the credentials from ENV (required):
  
 - `SNAP_CI_USER`: Snap-CI username
 - `SNAP_CI_API_KEY`: Snap-CI API Key
