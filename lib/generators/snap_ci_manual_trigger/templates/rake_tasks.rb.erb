@@ -1,58 +1,55 @@
-namespace :snap_ci_manual_trigger do
+namespace :snap_ci do
+  desc <<-DESC.strip_heredoc
+    executes #manual_stage_on_new_pipeline using <%= owner.inspect %> as owner and <%= repository.inspect %> as repository
 
-  namespace :'<%= owner %>_<%= repository %>' do
-    desc <<-DESC.strip_heredoc
-      executes #manual_stage_on_new_pipeline using <%= owner.inspect %> as owner and <%= repository.inspect %> as repository
+    example:
+      rake <%= owner %>_<%= repository %>:manual_stage_on_new_pipeline[Deploy]
 
-      example:
-        rake <%= owner %>_<%= repository %>:manual_stage_on_new_pipeline[Deploy]
+    if you want a different branch (master by default) then add a second argument
 
-      if you want a different branch (master by default) then add a second argument
+    example:
+      rake <%= owner %>_<%= repository %>:manual_stage_on_new_pipeline[Deploy,my_branch]
 
-      example:
-        rake <%= owner %>_<%= repository %>:manual_stage_on_new_pipeline[Deploy,my_branch]
+  DESC
 
-    DESC
+  task :'<%= owner %>_<%= repository %>', [:stage, :branch_name] => [:environment] do |t, args|
+    args.with_defaults branch_name: 'master'
 
-    task :manual_stage_on_new_pipeline, [:stage, :branch_name] => [:environment] do |t, args|
-      args.with_defaults branch_name: 'master'
+    owner       = '<%= owner %>'
+    repository  = '<%= repository %>'
+    stage       = args[:stage]
+    branch_name = args[:branch_name]
+    user        = ENV['SNAP_CI_USER']
+    api_key     = ENV['SNAP_CI_API_KEY']
 
-      owner       = '<%= owner %>'
-      repository  = '<%= repository %>'
-      stage       = args[:stage]
-      branch_name = args[:branch_name]
-      user        = ENV['SNAP_CI_USER']
-      api_key     = ENV['SNAP_CI_API_KEY']
-
-      if stage.blank?
-      raise SnapCiManualTrigger::MissingRakeArgumentsError,
-            'missing stage!'
-      end
-
-      if branch_name.blank?
-      raise SnapCiManualTrigger::MissingRakeArgumentsError,
-            'missing branch_name!'
-      end
-
-      if user.blank?
-        raise SnapCiManualTrigger::MissingRakeAuthError,
-              'missing snap CI User! use ENV variable SNAP_CI_USER'
-      end
-
-      if api_key.blank?
-        raise SnapCiManualTrigger::MissingRakeAuthError,
-              'missing snap CI API Key! use ENV variable SNAP_CI_API_KEY'
-      end
-
-      service = SnapCiManualTrigger.for user: user,
-                                        api_key: api_key,
-                                        owner: owner,
-                                        repository: repository,
-                                        branch_name: branch_name
-
-      url = service.manual_stage_on_new_pipeline stage
-
-      puts "Stage #{stage} called. URL in SnapCI: #{url}"
+    if stage.blank?
+    raise SnapCiManualTrigger::MissingRakeArgumentsError,
+          'missing stage!'
     end
+
+    if branch_name.blank?
+    raise SnapCiManualTrigger::MissingRakeArgumentsError,
+          'missing branch_name!'
+    end
+
+    if user.blank?
+      raise SnapCiManualTrigger::MissingRakeAuthError,
+            'missing snap CI User! use ENV variable SNAP_CI_USER'
+    end
+
+    if api_key.blank?
+      raise SnapCiManualTrigger::MissingRakeAuthError,
+            'missing snap CI API Key! use ENV variable SNAP_CI_API_KEY'
+    end
+
+    service = SnapCiManualTrigger.for user: user,
+                                      api_key: api_key,
+                                      owner: owner,
+                                      repository: repository,
+                                      branch_name: branch_name
+
+    url = service.manual_stage_on_new_pipeline stage
+
+    puts "Stage #{stage} called. URL in SnapCI: #{url}"
   end
 end
