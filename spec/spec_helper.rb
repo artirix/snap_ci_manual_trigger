@@ -5,6 +5,7 @@ Bundler.setup
 require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
+require 'rake'
 require 'pry'
 require 'stub_env'
 require 'snap_ci_manual_trigger'

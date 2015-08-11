@@ -11,7 +11,6 @@ require 'snap_ci_manual_trigger/service'
 
 # GENERATORS
 
-require 'rake'
 require 'thor'
 require 'rails/generators'
 require 'rails/generators/actions'
