@@ -1,5 +1,10 @@
 # SnapCiManualTrigger
 
+[![Gem Version](https://badge.fury.io/rb/snap_ci_manual_trigger.svg)](http://badge.fury.io/rb/snap_ci_manual_trigger)
+[![Build Status](https://travis-ci.org/artirix/snap_ci_manual_trigger.svg?branch=master)](https://travis-ci.org/artirix/snap_ci_manual_trigger)
+[![Code Climate](https://codeclimate.com/github/artirix/snap_ci_manual_trigger.png)](https://codeclimate.com/github/artirix/snap_ci_manual_trigger)
+[![Code Climate Coverage](https://codeclimate.com/github/artirix/snap_ci_manual_trigger/coverage.png)](https://codeclimate.com/github/artirix/snap_ci_manual_trigger)
+
 `SnapCiManualTrigger` will connect to Snap-CI's API and trigger a manual stage on 
 a given pipeline or create a new pipeline.
  
