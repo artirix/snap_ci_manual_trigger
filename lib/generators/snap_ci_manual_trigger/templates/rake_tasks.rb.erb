@@ -23,13 +23,13 @@ namespace :snap_ci do
     api_key     = ENV['SNAP_CI_API_KEY']
 
     if stage.blank?
-    raise SnapCiManualTrigger::MissingRakeArgumentsError,
-          'missing stage!'
+      raise SnapCiManualTrigger::MissingRakeArgumentsError,
+            'missing stage!'
     end
 
     if branch_name.blank?
-    raise SnapCiManualTrigger::MissingRakeArgumentsError,
-          'missing branch_name!'
+      raise SnapCiManualTrigger::MissingRakeArgumentsError,
+            'missing branch_name!'
     end
 
     if user.blank?
